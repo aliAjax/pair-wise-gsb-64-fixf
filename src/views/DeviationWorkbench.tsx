@@ -3,6 +3,8 @@ import { Badge, Button, Dropdown, Field, Input, Option, Textarea } from '@fluent
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../store'
 import { createDeviation, reviewDeviation, saveInvestigation } from '../store/haccpSlice'
+import { computeReleaseBasis } from '../store/releaseBasis'
+import { ReleaseBasisCard } from '../components/ReleaseBasisCard'
 import type { DecisionType, Deviation, Investigation } from '../types'
 
 export function DeviationWorkbench() {
@@ -14,6 +16,7 @@ export function DeviationWorkbench() {
   const [newDeviation, setNewDeviation] = useState({ batchId: state.batches[0]?.id ?? '', stepId: state.processSteps[0]?.id ?? '', title: '', severity: '一般' as const, owner: '质量工程组' })
   const rows = useMemo(() => state.deviations.filter((item) => status === '全部' || item.status === status), [state.deviations, status])
   const selected = state.deviations.find((item) => item.id === selectedId) ?? rows[0]
+  const selectedBasis = selected ? computeReleaseBasis(state, selected.batchId) : null
   const [investigation, setInvestigation] = useState<Investigation | null>(null)
   const activeInvestigation = investigation?.cause === selected?.investigation.cause ? investigation : selected?.investigation
 
@@ -27,6 +30,7 @@ export function DeviationWorkbench() {
         </button>)}</div>
         {selected && <div className="record-panel">
           <div className="record-title"><div><span>{selected.id} · V{selected.version}</span><h2>{selected.title}</h2></div><Badge color={selected.severity === '重大' ? 'danger' : 'warning'}>{selected.status}</Badge></div>
+          {selectedBasis && <ReleaseBasisCard basis={selectedBasis} />}
           <Field label="原因判断"><Textarea value={activeInvestigation?.cause ?? ''} onChange={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), cause: data.value })} /></Field>
           <Field label="证据摘要"><Textarea value={activeInvestigation?.evidence ?? ''} onChange={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), evidence: data.value })} /></Field>
           <Field label="处置分支"><Dropdown value={activeInvestigation?.decision} selectedOptions={[activeInvestigation?.decision ?? '返工']} onOptionSelect={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), decision: data.optionValue as DecisionType })}>{['返工', '报废', '让步接收'].map((item) => <Option key={item} value={item} text={item}>{item}</Option>)}</Dropdown></Field>

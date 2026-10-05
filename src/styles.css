@@ -57,3 +57,26 @@ dt { color: #778481; } dd { margin: 0; text-align: right; max-width: 220px; }
 .deviation-list button.active { border-color: #1d5755; box-shadow: inset 3px 0 #1d5755; }.deviation-list button > div, .deviation-list footer { display: flex; justify-content: space-between; align-items: center; }
 .deviation-list strong { font-size: 14px; }.deviation-list span, .deviation-list small, .deviation-list footer span { color: #788683; font-size: 11px; }
 .reset-button { position: fixed; right: 20px; bottom: 14px; }
+.head-actions { display: flex; align-items: center; gap: 12px; }
+.basis-card { margin-top: 14px; border: 1px solid #d7e0dc; border-left: 3px solid #1d5755; background: #f7faf8; padding: 12px 14px; }
+.basis-head { display: flex; justify-content: space-between; align-items: center; }
+.basis-head strong { font-size: 13px; }
+.basis-card dl { margin: 10px 0 0; }
+.basis-blockers { margin: 10px 0 0; padding: 9px 9px 9px 24px; background: #fff3f1; border-left: 3px solid #d75048; color: #b53d39; font-size: 11px; line-height: 1.7; }
+.hint-text { color: #5f6f6b; background: #eef4f1; border-left: 3px solid #1d5755; padding: 9px; font-size: 11px; line-height: 1.5; }
+.confirm-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.confirm-note { grid-column: 1 / -1; }
+.conflict-panel { margin-top: 14px; border-top: 1px solid #e5eae8; padding-top: 12px; }
+.conflict-panel h3, .stale-panel h3 { font-size: 13px; margin: 0 0 10px; }
+.conflict-item { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; padding: 9px; background: #fdf6f0; border-left: 3px solid #d75048; margin-bottom: 6px; }
+.conflict-item span { font-size: 12px; }
+.conflict-item small { grid-column: 1 / -1; color: #8a7a6d; font-size: 10px; }
+.stale-panel { margin-top: 14px; background: white; border: 1px solid #dbe2df; border-left: 3px solid #d75048; padding: 15px; }
+.stale-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid #edf1ef; }
+.stale-item strong, .stale-item span, .stale-item small { display: block; }
+.stale-item span { color: #6c7a76; font-size: 11px; }
+.stale-item small { color: #b53d39; font-size: 10px; }
+.audit-basis { max-width: 560px; margin-bottom: 14px; }
+.audit-basis .basis-card { margin-top: 0; background: white; }
+.persist-banner { position: sticky; top: 0; z-index: 10; margin-bottom: 10px; }
+.rule-band { align-items: center; gap: 12px; }

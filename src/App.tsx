@@ -1,20 +1,36 @@
+import { useEffect, useState } from 'react'
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
-import { Badge, Button } from '@fluentui/react-components'
+import { Badge, Button, MessageBar, MessageBarActions, MessageBarBody, MessageBarTitle } from '@fluentui/react-components'
 import { BrowserRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from './store'
 import { resetDemo } from './store/haccpSlice'
+import { onPersistFailure } from './services/persistence'
 import { Overview } from './views/Overview'
+import { CleaningControl } from './views/CleaningControl'
 import { ProcessControl } from './views/ProcessControl'
 import { DeviationWorkbench } from './views/DeviationWorkbench'
 import { AuditTrail } from './views/AuditTrail'
 
 const navigation = [
   ['/', '生产批次'],
+  ['/cleaning', '清洗验证'],
   ['/process', 'HACCP控制矩阵'],
   ['/deviations', '偏差调查'],
   ['/audit', '追溯审计']
 ]
+
+function PersistenceNotice() {
+  const [message, setMessage] = useState<string | null>(null)
+  useEffect(() => onPersistFailure((text) => setMessage(text)), [])
+  if (!message) return null
+  return (
+    <MessageBar intent="error" className="persist-banner">
+      <MessageBarBody><MessageBarTitle>写入失败已恢复</MessageBarTitle>{message}</MessageBarBody>
+      <MessageBarActions><Button appearance="transparent" onClick={() => setMessage(null)}>知道了</Button></MessageBarActions>
+    </MessageBar>
+  )
+}
 
 function Shell() {
   const dispatch = useDispatch<AppDispatch>()
@@ -27,8 +43,10 @@ function Shell() {
         <div className="aside-note"><strong>生产日</strong><span>2026-09-29</span><small>数据源：本地持久化</small></div>
       </aside>
       <main>
+        <PersistenceNotice />
         <Routes>
           <Route path="/" element={<Overview />} />
+          <Route path="/cleaning" element={<CleaningControl />} />
           <Route path="/process" element={<ProcessControl />} />
           <Route path="/deviations" element={<DeviationWorkbench />} />
           <Route path="/audit" element={<AuditTrail />} />
