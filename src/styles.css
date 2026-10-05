@@ -57,3 +57,28 @@ dt { color: #778481; } dd { margin: 0; text-align: right; max-width: 220px; }
 .deviation-list button.active { border-color: #1d5755; box-shadow: inset 3px 0 #1d5755; }.deviation-list button > div, .deviation-list footer { display: flex; justify-content: space-between; align-items: center; }
 .deviation-list strong { font-size: 14px; }.deviation-list span, .deviation-list small, .deviation-list footer span { color: #788683; font-size: 11px; }
 .reset-button { position: fixed; right: 20px; bottom: 14px; }
+.metrics.five { grid-template-columns: repeat(5, 1fr); }
+.persist-band, .clock-band { display: flex; align-items: center; gap: 8px; }
+.persist-band small, .clock-band span { color: #7d8987; font-size: 11px; }
+.clock-band strong { color: #15433f; }
+.basis-card { margin-top: 14px; border: 1px solid #d8e2de; border-left: 3px solid #1d5755; background: #f6faf8; padding: 12px 14px; }
+.basis-card dl { margin: 10px 0 0; }
+.basis-head { display: flex; justify-content: space-between; align-items: center; }
+.basis-head strong { font-size: 13px; }
+.basis-reasons { margin: 10px 0 0; padding: 8px 8px 8px 24px; background: #fff3f1; border-left: 3px solid #d75048; color: #b53d39; font-size: 11px; line-height: 1.7; }
+.basis-hint { margin: 12px 0 0; color: #2c5e58; background: #eef6f2; border-left: 3px solid #2c8a7b; padding: 9px; font-size: 11px; }
+.line-section { margin-bottom: 18px; }
+.line-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.line-head h2 { margin: 0; font-size: 16px; }
+.line-head .fui-Button { margin-left: auto; }
+.cleaning-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px; }
+.cleaning-card { background: white; border: 1px solid #dbe2df; border-radius: 4px; padding: 14px; }
+.cleaning-card.active-cleaning { border-color: #2c8a7b; box-shadow: inset 3px 0 #2c8a7b; }
+.cleaning-title { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #e5eae8; }
+.cleaning-card dl { margin: 10px 0 0; }
+.attempt-list { margin-top: 10px; display: grid; gap: 5px; }
+.attempt-list > div { display: grid; grid-template-columns: 1fr auto; gap: 2px 8px; background: #f4f7f5; padding: 7px 9px; font-size: 11px; }
+.attempt-list small { grid-column: 1 / -1; color: #899592; font-size: 10px; }
+.attempt-list .attempt-conflict { background: #fdf3e3; border-left: 3px solid #c89c30; }
+.conflict-band { background: #fdf3e3; }
+.edit-grid.four { grid-template-columns: repeat(4, 1fr); }
